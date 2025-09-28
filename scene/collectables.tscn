@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://dtxu43n0bjx1n"]
+
+[ext_resource type="Script" uid="uid://d01gld01gj25b" path="res://scene/collectables.gd" id="1_fbaj6"]
+[ext_resource type="Texture2D" uid="uid://d36fqqbeio8k5" path="res://Diamond Effect/01.png" id="1_fx8id"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fbaj6"]
+atlas = ExtResource("1_fx8id")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_021su"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fbaj6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1t0xw"]
+radius = 5.0
+
+[node name="Collectables" type="Area2D"]
+script = ExtResource("1_fbaj6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(349, 80)
+sprite_frames = SubResource("SpriteFrames_021su")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(349, 80)
+shape = SubResource("CircleShape2D_1t0xw")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
